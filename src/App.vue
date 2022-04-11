@@ -1,19 +1,36 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar
+      app
+      color="secondary"
+      :dark="true"
+    >
+      <div class="d-flex align-center headline font-weight-black">
+        HONK!
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <theme-controller class="mt-5"></theme-controller>
+      <wallet-connect></wallet-connect>
+    </v-app-bar>
+
+    <v-main>
+      <router-view/>
+    </v-main>
+  </v-app>
 </template>
 
-<style lang="stylus">
-#app
-  font-family Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-  margin-top 60px
-</style>
+<script>
+import WalletConnect from '@/components/WalletConnect'
+import ThemeController from '@/components/ThemeController'
+
+export default {
+  name: 'App',
+
+  components: {
+    WalletConnect,
+    ThemeController
+  }
+}
+</script>
