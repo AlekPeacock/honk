@@ -34,13 +34,13 @@ export default new Vuex.Store({
         bridge: 'https://bridge.walletconnect.org',
         qrcodeModal: QRCodeModal
       })
-
+      
       commit('setConnector', connector)
 
-      if (!connector.connected && create === true) {
-          connector.createSession()
+      if (!connector.connected) {
+          if (create === true) connector.createSession()  // only attempt to create a new session if the the function is invoked with create set to true. 
       } else {
-          commit('setAccounts', connector._accounts)
+          commit('setAccounts', connector._accounts)      // If it is already connected, select the connected accounts.
       }
 
       connector.on('connect', (error, payload) => {
